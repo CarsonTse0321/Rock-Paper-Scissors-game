@@ -1,48 +1,85 @@
-#This is a rock paper scissor game
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
 
-print("Welcome to the Rock Paper Scissor game")
-print("Choices:")
-print("1. Rock\n2. Paper\n3. Scissors\n4. q to quit")
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
 
 import random
 
-list1 = ["Rock", "Paper", "Scissors", "Q"]
-list2 = ["Rock", "Paper", "Scissors"]
+Player_win = 0
+Computer_win = 0
 
-Player_Win = 0
-Computer_Win = 0
+lst = [rock, paper, scissors]
 
 while True:
-    Player_choice = input("Enter your choice: ").capitalize()
-    if Player_choice not in list1:
-        print("Invalid choice")
-        Player_choice = input("Enter your choice: ").capitalize()
-    Computer_Choice = random.choice(list2)
-    print(f"You chose {Player_choice} and computer chose {Computer_Choice}")
-    if Player_choice == Computer_Choice:
-        print("It's a tie!")
-    elif Player_choice == "Rock" and Computer_Choice == "Paper":
-        print("You lose!")
-        Computer_Win += 1
-    elif Player_choice == "Rock" and Computer_Choice == "Scissors":
-        print("You win!")
-        Player_Win += 1
-    elif Player_choice == "Paper" and Computer_Choice == "Scissors":
-        print("You lose!")
-        Computer_Win += 1
-    elif Player_choice == "Paper" and Computer_Choice == "Rock":
-        print("You win!")
-        Player_Win += 1
-    elif Player_choice == "Scissors" and Computer_Choice == "Rock":
-        print("You lose!")
-        Computer_Win += 1
-    elif Player_choice == "Scissors" and Computer_Choice == "Paper":
-        print("You win!")
-        Player_Win += 1
-    elif Player_choice == "Q":
+    ans_player = input("What do you choose? Type 0 for Rock, 1 for Paper or 2 for Scissores ")
+    ans_computer = random.choice(lst)
+    if ans_player == '0':
+        print(rock)
+        if ans_computer == rock:
+            print("Tie")
+            print(rock)
+        elif ans_computer == paper:
+            print("You lose")
+            print(paper)
+            Computer_win += 1
+        else:
+            print("You win")
+            print(scissors)
+            Player_win += 1
+    elif ans_player == '1':
+        print(paper)
+        if ans_computer == rock:
+            print("You win")
+            print(rock)
+            Player_win += 1
+        elif ans_computer == paper:
+            print("Tie")
+            print(paper)
+        else:
+            print("You lose")
+            print(scissors)
+            Computer_win += 1
+    else:
+        print(scissors)
+        if ans_computer == rock:
+            print("You lose")
+            print(rock)
+            Computer_win += 1
+        elif ans_computer == paper:
+            print("You win")
+            print(paper)
+            Player_win += 1
+        else:
+            print("Tie")
+            print(scissors)
+    if ans_player == 'q':
+        print(f"You win {Player_win} times, Computer win {Computer_win} times.")
+        if Player_win > Computer_win:
+            print("You win the game")
+        elif Player_win < Computer_win:
+            print("You lose the game")
+        else:
+            print("Tie Game End")
         break
-print("Game Over")
-print(f"Player wins: {Player_Win}")
-print(f"Computer wins: {Computer_Win}")
-    
-    
